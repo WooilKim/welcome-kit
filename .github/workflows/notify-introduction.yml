@@ -1,0 +1,61 @@
+name: Notify New Introduction
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "_introductions/*.md"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get changed files
+        id: changed-files
+        run: |
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- '_introductions/*.md' | head -1)
+          if [ -n "$CHANGED" ]; then
+            echo "file=$CHANGED" >> $GITHUB_OUTPUT
+            NAME=$(basename "$CHANGED" .md)
+            echo "name=$NAME" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Extract introduction info
+        if: steps.changed-files.outputs.file != ''
+        id: extract
+        run: |
+          FILE="${{ steps.changed-files.outputs.file }}"
+          NAME=$(grep -m1 "^name:" "$FILE" | sed 's/name: *"\?\([^"]*\)"\?/\1/')
+          ROLE=$(grep -m1 "^role:" "$FILE" | sed 's/role: *"\?\([^"]*\)"\?/\1/')
+          echo "member_name=$NAME" >> $GITHUB_OUTPUT
+          echo "member_role=$ROLE" >> $GITHUB_OUTPUT
+
+      - name: Send email notification
+        if: steps.changed-files.outputs.file != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "[Welcome Kit] 새로운 팀원 소개 - ${{ steps.extract.outputs.member_name }}"
+          to: team-mailing-list@company.com
+          from: Welcome Kit <noreply@company.com>
+          body: |
+            안녕하세요!
+            
+            새로운 팀원이 자기소개를 등록했습니다.
+            
+            - 이름: ${{ steps.extract.outputs.member_name }}
+            - 직책: ${{ steps.extract.outputs.member_role }}
+            
+            자세한 내용은 Welcome Kit에서 확인하세요:
+            https://your-org.github.io/welcome-kit/introductions/
+            
+            ---
+            이 메일은 자동으로 발송되었습니다.

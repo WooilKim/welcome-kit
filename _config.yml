@@ -1,0 +1,46 @@
+# Welcome Kit - 팀 온보딩 포털
+title: Welcome Kit
+description: 새로운 팀원을 위한 온보딩 가이드
+baseurl: "/welcome-kit"
+url: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Collections
+collections:
+  steps:
+    output: true
+    permalink: /step/:name/
+  introductions:
+    output: true
+    permalink: /introductions/:name/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "steps"
+    values:
+      layout: "step"
+  - scope:
+      path: ""
+      type: "introductions"
+    values:
+      layout: "introduction"
+
+# Data folders
+data_dir: _data
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CONTRIBUTING.md
+  - .github
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
