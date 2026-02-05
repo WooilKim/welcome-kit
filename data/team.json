@@ -1,0 +1,30 @@
+{
+  "name": "개발팀",
+  "slack_channel": "#dev-team",
+  "wiki_url": "https://wiki.company.com/dev-team",
+  "members": [
+    {
+      "name": "김팀장",
+      "role": "팀장",
+      "email": "team.lead@company.com",
+      "slack": "@teamlead"
+    },
+    {
+      "name": "박시니어",
+      "role": "시니어 개발자",
+      "email": "senior.dev@company.com",
+      "slack": "@seniordev"
+    },
+    {
+      "name": "이주니어",
+      "role": "주니어 개발자",
+      "email": "junior.dev@company.com",
+      "slack": "@juniordev"
+    }
+  ],
+  "contacts": {
+    "hr": "hr@company.com",
+    "it_support": "it-support@company.com",
+    "facilities": "facilities@company.com"
+  }
+}

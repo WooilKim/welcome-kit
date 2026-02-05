@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 1: PC 환경설정 - Welcome Kit</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">Welcome Kit</a>
+      <nav class="nav">
+        <a href="../index.html">홈</a>
+        <a href="../introductions/index.html">팀원 소개</a>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="main">
+    <div class="container">
+      <div class="step-navigation">
+        <div class="step-indicator">
+          <div class="step-dot active" data-step="1"><span class="step-icon">💻</span><span class="step-label">PC 환경설정</span></div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="2"><span class="step-icon">👥</span><span class="step-label">팀 소개</span></div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="3"><span class="step-icon">🛠️</span><span class="step-label">업무 도구</span></div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="4"><span class="step-icon">📚</span><span class="step-label">필수 문서</span></div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="5"><span class="step-icon">✍️</span><span class="step-label">자기소개</span></div>
+        </div>
+      </div>
+
+      <article class="step-content">
+        <h1>Step 1: PC 환경설정</h1>
+        
+        <p>개발에 필요한 기본 환경을 설정합니다. 아래 체크리스트를 따라 순서대로 진행해주세요.</p>
+
+        <h2>필수 소프트웨어 설치</h2>
+        <div class="download-grid" id="software-grid"></div>
+
+        <h2>Git 설정</h2>
+        <p>터미널에서 아래 명령어를 실행하여 Git을 설정합니다:</p>
+        <pre><code>git config --global user.name "홍길동"
+git config --global user.email "gildong@company.com"</code></pre>
+
+        <h2>SSH Key 생성</h2>
+        <p>GitHub 접근을 위한 SSH Key를 생성합니다:</p>
+        <pre><code>ssh-keygen -t ed25519 -C "gildong@company.com"
+cat ~/.ssh/id_ed25519.pub</code></pre>
+        <p>출력된 키를 <a href="https://github.com/settings/keys" target="_blank">GitHub Settings > SSH Keys</a>에 등록해주세요.</p>
+
+        <h2>체크리스트</h2>
+        <ul class="checklist">
+          <li><input type="checkbox" id="check1"><label for="check1">VS Code 설치 완료</label></li>
+          <li><input type="checkbox" id="check2"><label for="check2">Git 설치 및 설정 완료</label></li>
+          <li><input type="checkbox" id="check3"><label for="check3">Node.js 설치 완료</label></li>
+          <li><input type="checkbox" id="check4"><label for="check4">Docker Desktop 설치 완료</label></li>
+          <li><input type="checkbox" id="check5"><label for="check5">SSH Key 생성 및 GitHub 등록 완료</label></li>
+        </ul>
+
+        <div class="alert alert-info">
+          <strong>도움이 필요하신가요?</strong><br>
+          IT 지원팀에 문의해주세요: it-support@company.com
+        </div>
+        
+        <div class="step-actions">
+          <span></span>
+          <button class="btn btn-primary" onclick="handleCompleteStep(1)">완료하고 다음 단계로</button>
+        </div>
+      </article>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <p>Welcome Kit - 새로운 팀원을 위한 온보딩 가이드</p>
+    </div>
+  </footer>
+  
+  <script src="../assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      updateProgressUI();
+      const data = await loadDownloadsData();
+      if (data) {
+        document.getElementById('software-grid').innerHTML = renderDownloadGrid(data.software, true);
+      }
+    });
+  </script>
+</body>
+</html>

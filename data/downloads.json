@@ -1,0 +1,41 @@
+{
+  "software": [
+    {
+      "name": "VS Code",
+      "url": "https://code.visualstudio.com/download",
+      "description": "코드 에디터"
+    },
+    {
+      "name": "Git",
+      "url": "https://git-scm.com/downloads",
+      "description": "버전 관리 시스템"
+    },
+    {
+      "name": "Node.js LTS",
+      "url": "https://nodejs.org/",
+      "description": "JavaScript 런타임"
+    },
+    {
+      "name": "Docker Desktop",
+      "url": "https://www.docker.com/products/docker-desktop/",
+      "description": "컨테이너 플랫폼"
+    }
+  ],
+  "documents": [
+    {
+      "name": "개발 가이드라인",
+      "file": "dev-guidelines.pdf",
+      "description": "코드 작성 규칙과 컨벤션"
+    },
+    {
+      "name": "보안 정책",
+      "file": "security-policy.pdf",
+      "description": "회사 보안 정책 안내"
+    },
+    {
+      "name": "휴가 신청 양식",
+      "file": "vacation-form.docx",
+      "description": "휴가 신청 시 사용"
+    }
+  ]
+}

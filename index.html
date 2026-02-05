@@ -1,39 +1,61 @@
----
-layout: default
-title: Welcome Kit - 온보딩 시작하기
----
-<meta name="baseurl" content="{{ site.baseurl }}">
-
-<div class="container">
-  <section class="hero">
-    <h1>환영합니다! 🎉</h1>
-    <p>{{ site.data.team.name }}의 새로운 멤버가 되신 것을 축하드립니다.<br>
-    아래 단계를 따라 온보딩을 완료해주세요.</p>
-  </section>
-
-  <section class="progress-bar">
-    <h3>
-      <span>진행률</span>
-      <span class="progress-text">0%</span>
-    </h3>
-    <div class="progress-track">
-      <div class="progress-fill" style="width: 0%"></div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Kit - 온보딩 시작하기</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">Welcome Kit</a>
+      <nav class="nav">
+        <a href="index.html">홈</a>
+        <a href="introductions/index.html">팀원 소개</a>
+      </nav>
     </div>
-  </section>
+  </header>
+  
+  <main class="main">
+    <div class="container">
+      <section class="hero">
+        <h1>환영합니다! 🎉</h1>
+        <p>개발팀의 새로운 멤버가 되신 것을 축하드립니다.<br>
+        아래 단계를 따라 온보딩을 완료해주세요.</p>
+      </section>
 
-  <section class="steps-grid">
-    {% for step in site.data.steps %}
-    <a href="{{ '/step/' | append: step.file | append: '/' | relative_url }}" 
-       class="step-card {% if forloop.index > 1 %}locked{% endif %}" 
-       data-step="{{ step.id }}">
-      <span class="step-icon">{{ step.icon }}</span>
-      <h3>Step {{ step.id }}: {{ step.title }}</h3>
-      <p>{{ step.description }}</p>
-    </a>
-    {% endfor %}
-  </section>
+      <section class="progress-bar">
+        <h3>
+          <span>진행률</span>
+          <span class="progress-text">0%</span>
+        </h3>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 0%"></div>
+        </div>
+      </section>
 
-  <div style="text-align: center; margin-top: 40px;">
-    <button class="btn btn-secondary reset-progress">진행 상황 초기화</button>
-  </div>
-</div>
+      <section class="steps-grid" id="steps-grid">
+      </section>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <button class="btn btn-secondary" onclick="resetProgress()">진행 상황 초기화</button>
+      </div>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <p>Welcome Kit - 새로운 팀원을 위한 온보딩 가이드</p>
+    </div>
+  </footer>
+  
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadStepsGrid();
+      updateProgressUI();
+    });
+  </script>
+</body>
+</html>

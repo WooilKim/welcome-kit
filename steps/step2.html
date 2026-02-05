@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 2: 팀 소개 - Welcome Kit</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="logo">Welcome Kit</a>
+      <nav class="nav">
+        <a href="../index.html">홈</a>
+        <a href="../introductions/index.html">팀원 소개</a>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="main">
+    <div class="container">
+      <div class="step-navigation">
+        <div class="step-indicator">
+          <div class="step-dot" data-step="1"><span class="step-icon">💻</span><span class="step-label">PC 환경설정</span></div>
+          <div class="step-line"></div>
+          <div class="step-dot active" data-step="2"><span class="step-icon">👥</span><span class="step-label">팀 소개</span></div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="3"><span class="step-icon">🛠️</span><span class="step-label">업무 도구</span></div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="4"><span class="step-icon">📚</span><span class="step-label">필수 문서</span></div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="5"><span class="step-icon">✍️</span><span class="step-label">자기소개</span></div>
+        </div>
+      </div>
+
+      <article class="step-content">
+        <h1>Step 2: 팀 소개</h1>
+        
+        <p id="team-welcome">팀에 오신 것을 환영합니다!</p>
+
+        <h2>팀 정보</h2>
+        <table class="info-table">
+          <tr><th>팀명</th><td id="team-name">-</td></tr>
+          <tr><th>Slack 채널</th><td id="team-slack">-</td></tr>
+          <tr><th>Wiki</th><td><a id="team-wiki" href="#" target="_blank">팀 위키</a></td></tr>
+        </table>
+
+        <h2>팀원 소개</h2>
+        <div class="introductions-grid" id="members-grid"></div>
+
+        <h2>주요 연락처</h2>
+        <table class="info-table">
+          <tr><th>HR</th><td id="contact-hr">-</td></tr>
+          <tr><th>IT 지원</th><td id="contact-it">-</td></tr>
+          <tr><th>시설관리</th><td id="contact-facilities">-</td></tr>
+        </table>
+
+        <h2>팀 문화</h2>
+        <ul>
+          <li><strong>데일리 스탠드업</strong>: 매일 오전 10시, Slack 허들</li>
+          <li><strong>코드 리뷰</strong>: 모든 PR은 최소 1명의 리뷰 필요</li>
+          <li><strong>점심 시간</strong>: 12:00 ~ 13:00 (자유롭게)</li>
+          <li><strong>재택 근무</strong>: 주 2회 가능 (팀장과 조율)</li>
+        </ul>
+
+        <div class="alert alert-success">
+          <strong>Tip!</strong> Slack에서 팀원들에게 먼저 인사해보세요. 팀 채널에서 환영받으실 거예요!
+        </div>
+
+        <h2>체크리스트</h2>
+        <ul class="checklist">
+          <li><input type="checkbox" id="check1"><label for="check1">팀 Slack 채널 가입 완료</label></li>
+          <li><input type="checkbox" id="check2"><label for="check2">팀원들에게 인사 완료</label></li>
+          <li><input type="checkbox" id="check3"><label for="check3">팀 Wiki 북마크 완료</label></li>
+        </ul>
+        
+        <div class="step-actions">
+          <a href="step1.html" class="btn btn-secondary">이전: PC 환경설정</a>
+          <button class="btn btn-primary" onclick="handleCompleteStep(2)">완료하고 다음 단계로</button>
+        </div>
+      </article>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <p>Welcome Kit - 새로운 팀원을 위한 온보딩 가이드</p>
+    </div>
+  </footer>
+  
+  <script src="../assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      updateProgressUI();
+      const team = await loadTeamData();
+      if (team) {
+        document.getElementById('team-name').textContent = team.name;
+        document.getElementById('team-slack').textContent = team.slack_channel;
+        document.getElementById('team-wiki').href = team.wiki_url;
+        document.getElementById('contact-hr').textContent = team.contacts.hr;
+        document.getElementById('contact-it').textContent = team.contacts.it_support;
+        document.getElementById('contact-facilities').textContent = team.contacts.facilities;
+        document.getElementById('members-grid').innerHTML = renderTeamMembers(team.members);
+      }
+    });
+  </script>
+</body>
+</html>
