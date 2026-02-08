@@ -205,6 +205,12 @@
       padding: 0;
     }
 
+    .wiki-section mark {
+      background: #fef08a;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+
     .completion-banner {
       background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
       color: white;
@@ -352,6 +358,13 @@
               <span class="toc-number">05</span>
               <span class="toc-icon">✍️</span>
               <span>자기소개</span>
+            </a>
+          </li>
+          <li>
+            <a href="#appendix" data-section="appendix">
+              <span class="toc-number">A</span>
+              <span class="toc-icon">📝</span>
+              <span>문서 작성 가이드</span>
             </a>
           </li>
         </ul>
@@ -644,6 +657,204 @@ git push origin introduce/홍길동</code></pre>
           <li><input type="checkbox" id="s5-check2"><label for="s5-check2">자기소개 JSON 작성 완료</label></li>
           <li><input type="checkbox" id="s5-check3"><label for="s5-check3">PR 생성 완료</label></li>
         </ul>
+      </section>
+
+      <section class="wiki-section" id="appendix">
+        <h1><span class="section-icon">📝</span> 부록: 문서 작성 가이드</h1>
+        
+        <p>이 문서에서 사용할 수 있는 다양한 포맷과 컴포넌트 예제입니다. 문서 작성 시 참고하세요.</p>
+
+        <h2>텍스트 포맷팅</h2>
+        <p>기본적인 텍스트 스타일링 방법입니다:</p>
+        <ul>
+          <li><strong>굵은 텍스트</strong> - <code>&lt;strong&gt;</code> 또는 <code>&lt;b&gt;</code> 태그 사용</li>
+          <li><em>기울임 텍스트</em> - <code>&lt;em&gt;</code> 또는 <code>&lt;i&gt;</code> 태그 사용</li>
+          <li><code>인라인 코드</code> - <code>&lt;code&gt;</code> 태그 사용</li>
+          <li><mark>형광펜 효과</mark> - <code>&lt;mark&gt;</code> 태그 사용</li>
+          <li><del>취소선 텍스트</del> - <code>&lt;del&gt;</code> 태그 사용</li>
+        </ul>
+
+        <h2>링크</h2>
+        
+        <h3>외부 링크 (새 탭)</h3>
+        <p>외부 사이트는 새 탭에서 열리도록 설정합니다:</p>
+        <p><a href="https://github.com" target="_blank">GitHub 바로가기</a> | <a href="https://slack.com" target="_blank">Slack 바로가기</a> | <a href="https://www.atlassian.com/software/jira" target="_blank">Jira 바로가기</a></p>
+        <pre><code>&lt;a href="https://github.com" target="_blank"&gt;GitHub 바로가기&lt;/a&gt;</code></pre>
+
+        <h3>내부 링크 (페이지 내 이동)</h3>
+        <p>문서 내 다른 섹션으로 이동합니다:</p>
+        <p><a href="#step-1">Step 1로 이동</a> | <a href="#step-3">Step 3으로 이동</a> | <a href="#step-5">Step 5로 이동</a></p>
+        <pre><code>&lt;a href="#step-1"&gt;Step 1로 이동&lt;/a&gt;</code></pre>
+
+        <h3>이메일 링크</h3>
+        <p>클릭하면 메일 클라이언트가 열립니다:</p>
+        <p><a href="mailto:support@company.com">support@company.com</a></p>
+        <pre><code>&lt;a href="mailto:support@company.com"&gt;support@company.com&lt;/a&gt;</code></pre>
+
+        <h2>파일 다운로드</h2>
+        
+        <h3>다운로드 버튼 스타일</h3>
+        <div class="download-grid">
+          <div class="download-item">
+            <div class="info">
+              <h4>샘플 PDF 문서</h4>
+              <p>예제용 PDF 파일입니다</p>
+            </div>
+            <a href="assets/downloads/dev-guidelines.pdf" class="btn btn-primary download-btn" download>다운로드</a>
+          </div>
+          <div class="download-item">
+            <div class="info">
+              <h4>보안 정책 문서</h4>
+              <p>회사 보안 정책 안내</p>
+            </div>
+            <a href="assets/downloads/security-policy.pdf" class="btn btn-primary download-btn" download>다운로드</a>
+          </div>
+        </div>
+        <pre><code>&lt;div class="download-item"&gt;
+  &lt;div class="info"&gt;
+    &lt;h4&gt;파일명&lt;/h4&gt;
+    &lt;p&gt;파일 설명&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;a href="경로/파일.pdf" class="btn btn-primary download-btn" download&gt;다운로드&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+
+        <h3>텍스트 링크 다운로드</h3>
+        <p>버튼 없이 텍스트 링크로도 다운로드할 수 있습니다: <a href="assets/downloads/introduction-template.md" download>자기소개 템플릿 다운로드</a></p>
+        <pre><code>&lt;a href="파일경로" download&gt;다운로드 텍스트&lt;/a&gt;</code></pre>
+
+        <h2>알림 박스</h2>
+        <p>중요한 정보를 강조할 때 사용합니다:</p>
+        
+        <div class="alert alert-info">
+          <strong>정보 (Info)</strong><br>
+          참고할 만한 정보나 팁을 제공할 때 사용합니다.
+        </div>
+        
+        <div class="alert alert-success">
+          <strong>성공 (Success)</strong><br>
+          완료된 작업이나 긍정적인 결과를 알릴 때 사용합니다.
+        </div>
+        
+        <div class="alert alert-warning">
+          <strong>경고 (Warning)</strong><br>
+          주의가 필요한 내용이나 중요한 안내사항에 사용합니다.
+        </div>
+        
+        <pre><code>&lt;div class="alert alert-info"&gt;정보 내용&lt;/div&gt;
+&lt;div class="alert alert-success"&gt;성공 내용&lt;/div&gt;
+&lt;div class="alert alert-warning"&gt;경고 내용&lt;/div&gt;</code></pre>
+
+        <h2>코드 블록</h2>
+        
+        <h3>인라인 코드</h3>
+        <p>문장 안에서 <code>변수명</code>이나 <code>함수()</code>를 표시할 때 사용합니다.</p>
+        
+        <h3>코드 블록</h3>
+        <p>여러 줄의 코드를 표시할 때 사용합니다:</p>
+        <pre><code>function greet(name) {
+  console.log(`Hello, ${name}!`);
+  return true;
+}
+
+greet('World');</code></pre>
+        
+        <pre><code>&lt;pre&gt;&lt;code&gt;여기에 코드 작성&lt;/code&gt;&lt;/pre&gt;</code></pre>
+
+        <h2>테이블</h2>
+        <p>정보를 표 형식으로 정리할 때 사용합니다:</p>
+        
+        <table class="info-table">
+          <tr>
+            <th>항목</th>
+            <th>설명</th>
+            <th>비고</th>
+          </tr>
+          <tr>
+            <td>HTML</td>
+            <td>웹 페이지 구조 정의</td>
+            <td>필수</td>
+          </tr>
+          <tr>
+            <td>CSS</td>
+            <td>스타일 및 레이아웃</td>
+            <td>필수</td>
+          </tr>
+          <tr>
+            <td>JavaScript</td>
+            <td>동적 기능 구현</td>
+            <td>선택</td>
+          </tr>
+        </table>
+        
+        <pre><code>&lt;table class="info-table"&gt;
+  &lt;tr&gt;&lt;th&gt;헤더1&lt;/th&gt;&lt;th&gt;헤더2&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;내용1&lt;/td&gt;&lt;td&gt;내용2&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+        <h2>리스트</h2>
+        
+        <h3>순서 없는 리스트</h3>
+        <ul>
+          <li>첫 번째 항목</li>
+          <li>두 번째 항목
+            <ul>
+              <li>중첩된 항목 1</li>
+              <li>중첩된 항목 2</li>
+            </ul>
+          </li>
+          <li>세 번째 항목</li>
+        </ul>
+        
+        <h3>순서 있는 리스트</h3>
+        <ol>
+          <li>첫 번째 단계</li>
+          <li>두 번째 단계</li>
+          <li>세 번째 단계</li>
+        </ol>
+
+        <h3>체크리스트</h3>
+        <ul class="checklist">
+          <li><input type="checkbox" id="demo-check1"><label for="demo-check1">완료할 작업 1</label></li>
+          <li><input type="checkbox" id="demo-check2" checked><label for="demo-check2">이미 완료된 작업</label></li>
+          <li><input type="checkbox" id="demo-check3"><label for="demo-check3">완료할 작업 3</label></li>
+        </ul>
+        <pre><code>&lt;ul class="checklist"&gt;
+  &lt;li&gt;&lt;input type="checkbox" id="check1"&gt;&lt;label for="check1"&gt;항목&lt;/label&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+        <h2>이미지</h2>
+        <p>이미지를 삽입하는 방법입니다:</p>
+        <pre><code>&lt;img src="assets/images/example.png" alt="이미지 설명" style="max-width: 100%;"&gt;</code></pre>
+        
+        <h2>버튼 스타일</h2>
+        <p>다양한 버튼 스타일을 사용할 수 있습니다:</p>
+        <p>
+          <a href="#" class="btn btn-primary">Primary 버튼</a>
+          <a href="#" class="btn btn-secondary" style="margin-left: 8px;">Secondary 버튼</a>
+        </p>
+        <pre><code>&lt;a href="#" class="btn btn-primary"&gt;Primary 버튼&lt;/a&gt;
+&lt;a href="#" class="btn btn-secondary"&gt;Secondary 버튼&lt;/a&gt;</code></pre>
+
+        <h2>카드 그리드</h2>
+        <p>팀원이나 항목을 카드 형태로 표시할 때 사용합니다:</p>
+        <div class="introductions-grid">
+          <div class="introduction-preview" style="cursor: default;">
+            <div class="intro-photo-placeholder">A</div>
+            <div>
+              <h3>카드 제목</h3>
+              <p style="color: var(--primary);">부제목</p>
+              <p style="color: var(--text-muted); font-size: 0.85rem;">설명 텍스트</p>
+            </div>
+          </div>
+          <div class="introduction-preview" style="cursor: default;">
+            <div class="intro-photo-placeholder">B</div>
+            <div>
+              <h3>카드 제목 2</h3>
+              <p style="color: var(--primary);">부제목</p>
+              <p style="color: var(--text-muted); font-size: 0.85rem;">설명 텍스트</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <div class="completion-banner">
